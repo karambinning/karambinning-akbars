@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Akbar's Mini-Market — Sneinton Dale, Nottingham</title>
+<meta name="description" content="Akbar's Mini-Market on Sneinton Dale. Groceries, off-licence, household, world foods. A corner shop for NG2.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4EBD9;
+    --paper-2:#EADFC6;
+    --ink:#1A1410;
+    --ink-soft:#3B2F26;
+    --saffron:#D4892B;
+    --brick:#8E3B22;
+    --moss:#5F6A3E;
+    --rule:rgba(26,20,16,.18);
+    --display:"Big Shoulders Display",Impact,Haettenschweiler,"Franklin Gothic Bold",sans-serif;
+    --body:"Newsreader",Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:var(--body);
+    font-size:clamp(1rem,.85rem + .35vw,1.13rem);
+    line-height:1.55;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    background-image:radial-gradient(rgba(26,20,16,.08) 1px, transparent 1px);
+    background-size:3px 3px;
+    mix-blend-mode:multiply;
+    opacity:.35;
+    z-index:1;
+  }
+  main,header,footer,section{position:relative;z-index:2}
+  h1,h2,h3{font-family:var(--display);font-weight:900;letter-spacing:-.01em;line-height:.92;text-wrap:balance;margin:0}
+  p{text-wrap:pretty;hyphens:auto;margin:0 0 1em}
+  a{color:inherit}
+  a.tel,a.dir{
+    display:inline-block;
+    font-family:var(--display);
+    font-weight:700;
+    text-decoration:none;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:2px;
+    transition:color .2s, border-color .2s, transform .2s;
+  }
+  a.tel:hover,a.dir:hover{color:var(--brick);border-color:var(--brick);transform:translateY(-1px)}
+
+  /* ---------- header ---------- */
+  header.nav{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:1.2rem clamp(1rem,4vw,3rem);
+    border-bottom:1px solid var(--rule);
+    font-family:var(--display);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+  .mark{font-weight:900;font-size:1.15rem;letter-spacing:.02em}
+  .mark .amp{color:var(--saffron)}
+  .nav-meta{font-size:.85rem;color:var(--ink-soft)}
+  .nav-meta b{color:var(--ink)}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:clamp(2rem,5vw,4rem) clamp(1rem,4vw,3rem) clamp(2rem,4vw,3rem);
+    display:grid;
+    grid-template-columns:1fr;
+    gap:clamp(1rem,3vw,2rem);
+  }
+  @media (min-width:760px){
+    .hero{grid-template-columns:1.4fr .9fr;align-items:end}
+  }
+  .hero h1{
+    font-size:clamp(4.5rem,15vw,14rem);
+    color:var(--ink);
+    text-transform:uppercase;
+  }
+  .hero h1 .apos{color:var(--saffron)}
+  .hero h1 .small{
+    display:block;
+    font-size:clamp(1.4rem,3vw,2.4rem);
+    font-weight:700;
+    letter-spacing:.02em;
+    margin-top:.4rem;
+    color:var(--ink-soft);
+  }
+  .hero-side{
+    border-top:2px solid var(--ink);
+    padding-top:1rem;
+    font-family:var(--display);
+    text-transform:uppercase;
+    font-size:.92rem;
+    letter-spacing:.05em;
+    color:var(--ink-soft);
+  }
+  .hero-side .where{
+    font-family:var(--body);
+    font-style:italic;
+    text-transform:none;
+    letter-spacing:0;
+    color:var(--ink);
+    font-size:1.1rem;
+    margin:.5rem 0 1rem;
+    line-height:1.4;
+  }
+  .hero-side .where b{font-style:normal;font-weight:600}
+
+  /* ---------- marquee ---------- */
+  .marquee{
+    overflow:hidden;
+    border-top:2px solid var(--ink);
+    border-bottom:2px solid var(--ink);
+    background:var(--ink);
+    color:var(--paper);
+    --speed:42s;
+  }
+  .marquee__track{
+    display:inline-flex;gap:3rem;white-space:nowrap;
+    padding:.95rem 0;
+    font-family:var(--display);
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:clamp(1.2rem,2.3vw,1.7rem);
+    animation:scroll var(--speed) linear infinite;
+  }
+  .marquee__track span{display:inline-flex;align-items:center;gap:3rem}
+  .marquee__track i{font-style:normal;color:var(--saffron);font-size:.7em}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.marquee__track{animation-duration:0s}}
+
+  /* ---------- shop intro ---------- */
+  .intro{
+    padding:clamp(3rem,7vw,5rem) clamp(1rem,4vw,3rem);
+    max-width:62ch;
+  }
+  .eyebrow{
+    font-family:var(--display);
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:.95rem;
+    color:var(--brick);
+    margin-bottom:1.2rem;
+    display:flex;align-items:center;gap:.7rem;
+  }
+  .eyebrow::before{content:"";width:2.2rem;height:2px;background:var(--brick)}
+  .intro h2{
+    font-size:clamp(2rem,4.5vw,3.6rem);
+    margin-bottom:1.5rem;
+  }
+  .intro p{font-size:clamp(1.05rem,.9rem + .4vw,1.2rem)}
+
+  /* ---------- aisles ---------- */
+  .aisles{
+    background:var(--ink);
+    color:var(--paper);
+    padding:clamp(3rem,7vw,5rem) clamp(1rem,4vw,3rem);
+  }
+  .aisles .eyebrow{color:var(--saffron)}
+  .aisles .eyebrow::before{background:var(--saffron)}
+  .aisles h2{
+    font-size:clamp(2rem,4.5vw,3.4rem);
+    color:var(--paper);
+    margin-bottom:2rem;
+    max-width:18ch;
+  }
+  .aisle-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr));
+    gap:1px;
+    background:rgba(244,235,217,.18);
+    border:1px solid rgba(244,235,217,.18);
+  }
+  .aisle{
+    background:var(--ink);
+    padding:1.8rem 1.4rem;
+  }
+  .aisle .num{
+    font-family:var(--display);
+    font-size:.85rem;
+    color:var(--saffron);
+    letter-spacing:.12em;
+    margin-bottom:.6rem;
+  }
+  .aisle h3{
+    font-size:1.7rem;
+    color:var(--paper);
+    margin-bottom:.5rem;
+    text-transform:uppercase;
+  }
+  .aisle p{
+    color:rgba(244,235,217,.78);
+    font-size:1rem;
+    margin:0;
+  }
+  @supports (animation-timeline:view()){
+    .aisle{animation:rise both;animation-timeline:view();animation-range:entry 0% cover 25%}
+    @keyframes rise{from{opacity:0;transform:translateY(1.3rem)}to{opacity:1;transform:translateY(0)}}
+  }
+
+  /* ---------- find us ---------- */
+  .find{
+    padding:clamp(3rem,7vw,5rem) clamp(1rem,4vw,3rem);
+    background:var(--paper-2);
+    display:grid;
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+  @media (min-width:760px){
+    .find{grid-template-columns:1.1fr .9fr;align-items:start}
+  }
+  .find h2{
+    font-size:clamp(2.5rem,6vw,5rem);
+    margin-bottom:1.5rem;
+    text-transform:uppercase;
+  }
+  .addr{
+    font-family:var(--display);
+    font-size:clamp(1.4rem,2.4vw,2rem);
+    line-height:1.15;
+    font-weight:700;
+    text-transform:uppercase;
+    margin-bottom:1.8rem;
+  }
+  .addr .line2{display:block;color:var(--brick)}
+  .find p{margin-bottom:1.3rem;max-width:36ch}
+  .find-actions{display:flex;flex-wrap:wrap;gap:1.4rem;margin-top:.5rem}
+
+  .map-card{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    padding:1.4rem;
+  }
+  .map-card .label{
+    font-family:var(--display);
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    font-size:.78rem;
+    color:var(--ink-soft);
+    margin-bottom:.7rem;
+  }
+  .map-card .pin{
+    font-family:var(--display);
+    font-size:1.05rem;
+    line-height:1.4;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+  }
+  .map-card .coord{
+    font-family:var(--body);
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:.95rem;
+    margin-top:.6rem;
+    letter-spacing:0;
+    text-transform:none;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--paper);
+    padding:clamp(2.5rem,5vw,4rem) clamp(1rem,4vw,3rem);
+  }
+  .foot-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+  @media (min-width:680px){
+    .foot-grid{grid-template-columns:repeat(3,1fr)}
+  }
+  .foot h4{
+    font-family:var(--display);
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    font-size:.85rem;
+    color:var(--saffron);
+    margin-bottom:.9rem;
+  }
+  .foot .big{
+    font-family:var(--display);
+    font-size:clamp(1.3rem,2vw,1.7rem);
+    font-weight:700;
+    line-height:1.15;
+    text-transform:uppercase;
+  }
+  .foot p{color:rgba(244,235,217,.78);margin:0;font-size:.98rem}
+  .foot a{color:var(--paper);text-decoration:none;border-bottom:1px solid rgba(244,235,217,.4)}
+  .foot a:hover{border-color:var(--saffron);color:var(--saffron)}
+  .sig{
+    border-top:1px solid rgba(244,235,217,.18);
+    margin-top:2.5rem;
+    padding-top:1.2rem;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:.8rem;
+    font-family:var(--display);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:.78rem;
+    color:rgba(244,235,217,.6);
+  }
+
+  /* ---------- selection ---------- */
+  ::selection{background:var(--saffron);color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="mark">Akbar<span class="amp">'</span>s</div>
+  <div class="nav-meta"><b>Sneinton Dale</b> &nbsp;·&nbsp; NG2 &nbsp;·&nbsp; Nottingham</div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h1>
+      Akbar<span class="apos">'</span>s
+      <span class="small">Mini-Market on Sneinton Dale</span>
+    </h1>
+    <aside class="hero-side">
+      <div>The Corner Shop</div>
+      <p class="where">
+        A neighbourhood mini-market at <b>22–24 Sneinton Dale</b>, serving NG2 — groceries, household, off-licence, and the things you forgot to pick up on the way home.
+      </p>
+      <a class="dir" href="https://www.google.com/maps/search/?api=1&amp;query=22-24+Sneinton+Dale+Nottingham+NG2">Walk-In Directions →</a>
+    </aside>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Open Early <i>●</i> Open Late <i>●</i> Sneinton's Corner <i>●</i> Groceries · Off-Licence · Household <i>●</i> NG2's Mini-Market <i>●</i> Pop In, We're Here <i>●</i></span>
+      <span>Open Early <i>●</i> Open Late <i>●</i> Sneinton's Corner <i>●</i> Groceries · Off-Licence · Household <i>●</i> NG2's Mini-Market <i>●</i> Pop In, We're Here <i>●</i></span>
+    </div>
+  </div>
+
+  <section class="intro">
+    <div class="eyebrow">The Shop</div>
+    <h2>The kind of shop a street relies on.</h2>
+    <p>
+      A mini-market is not a brand. It's a habit. Bread on the way to work, milk on the way home, a bottle for Friday, a card for Sunday, a phone-top-up because the kid lost his charger again.
+    </p>
+    <p>
+      Akbar's sits on Sneinton Dale — a working high street with a long memory — stocking the things a neighbourhood actually buys, day in, day out. Walk in and have a look.
+    </p>
+  </section>
+
+  <section class="aisles">
+    <div class="eyebrow">What You'll Find</div>
+    <h2>Stocked for everyday Sneinton.</h2>
+    <div class="aisle-grid">
+      <div class="aisle">
+        <div class="num">01 / Aisle</div>
+        <h3>Groceries</h3>
+        <p>Bread, milk, eggs, tinned goods, store-cupboard basics. The everyday list, kept fresh and kept stocked.</p>
+      </div>
+      <div class="aisle">
+        <div class="num">02 / Aisle</div>
+        <h3>Off-Licence</h3>
+        <p>Beers, wines and spirits for the weekend table. Challenge 25 — bring ID if you look under 25.</p>
+      </div>
+      <div class="aisle">
+        <div class="num">03 / Aisle</div>
+        <h3>Household</h3>
+        <p>Soap powder, dish soap, kitchen roll, batteries, lightbulbs. The things you only remember when you're out.</p>
+      </div>
+      <div class="aisle">
+        <div class="num">04 / Aisle</div>
+        <h3>Newsagent</h3>
+        <p>Papers, magazines, cards, sweets and chocolate. The counter staples that have always belonged in a corner shop.</p>
+      </div>
+      <div class="aisle">
+        <div class="num">05 / Aisle</div>
+        <h3>World Foods</h3>
+        <p>Rice, lentils, spices, sauces and the ingredients that don't always make the supermarket shelf.</p>
+      </div>
+      <div class="aisle">
+        <div class="num">06 / Aisle</div>
+        <h3>Top-Ups &amp; Counter</h3>
+        <p>Phone credit, tobacco, lottery tickets, and the bits and pieces that live behind the counter.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="find">
+    <div>
+      <div class="eyebrow">Find Us</div>
+      <h2>On the Dale.</h2>
+      <p class="addr">
+        22–24 Sneinton Dale
+        <span class="line2">Nottingham · NG2</span>
+      </p>
+      <p>
+        We're on the parade running through Sneinton — the stretch where the corner shops, takeaways and barbers sit shoulder to shoulder. Look for the shopfront, walk in.
+      </p>
+      <div class="find-actions">
+        <a class="dir" href="https://www.google.com/maps/search/?api=1&amp;query=22-24+Sneinton+Dale+Nottingham+NG2">Open in Maps →</a>
+        <a class="dir" href="https://www.google.com/maps/dir/?api=1&amp;destination=22-24+Sneinton+Dale+Nottingham+NG2">Get Directions →</a>
+      </div>
+    </div>
+    <div class="map-card">
+      <div class="label">Where we are</div>
+      <div class="pin">
+        Sneinton Dale<br>
+        NG2 · Nottingham<br>
+        City of Nottingham
+      </div>
+      <div class="coord">52.9514° N · −1.1276° W</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot">
+      <h4>Shop</h4>
+      <div class="big">Akbar's<br>Mini-Market</div>
+      <p style="margin-top:.6rem">A Sneinton corner shop.</p>
+    </div>
+    <div class="foot">
+      <h4>Address</h4>
+      <div class="big">22–24<br>Sneinton Dale<br>Nottingham NG2</div>
+    </div>
+    <div class="foot">
+      <h4>Visit</h4>
+      <p style="margin-bottom:.6rem">Walk in. We're on the Dale, between the takeaways and the post boxes — you won't miss it.</p>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=22-24+Sneinton+Dale+Nottingham+NG2">Open on map ↗</a>
+    </div>
+  </div>
+  <div class="sig">
+    <span>Akbar's Mini-Market · Sneinton Dale · NG2</span>
+    <span>A neighbourhood shop · Est. on the Dale</span>
+  </div>
+</footer>
+
+</body>
+</html>
